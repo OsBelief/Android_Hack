@@ -3,4 +3,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="sample_notification_summary_content">共有 %s 个通知.</string>
 </resources>

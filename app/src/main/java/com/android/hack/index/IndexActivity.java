@@ -2,7 +2,6 @@ package com.android.hack.index;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 
 import com.android.hack.R;
 import com.android.hack.jni.JniActivity;
+import com.android.hack.notification.NotificationActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +33,7 @@ public class IndexActivity extends AppCompatActivity {
 
         List<String> list = new ArrayList<>();
         list.add("1.Android JNI编程");
+        list.add("2.Android通知");
         IndexBaseAdapter adapter = new IndexBaseAdapter(list);
         mListView.setAdapter(adapter);
 
@@ -43,6 +44,10 @@ public class IndexActivity extends AppCompatActivity {
                     case 0:
                         Intent intent = new Intent(IndexActivity.this, JniActivity.class);
                         startActivity(intent);
+                        break;
+                    case 1:
+                        Intent intent2 = new Intent(IndexActivity.this, NotificationActivity.class);
+                        startActivity(intent2);
                         break;
                 }
             }
