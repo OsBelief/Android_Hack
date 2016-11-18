@@ -11,12 +11,29 @@
         android:id="@+id/btn_notification_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="普通通知" />
+        android:text="简单通知" />
 
     <Button
         android:id="@+id/btn_notification_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_notification_normal"
-        android:text="Android7.0通知分组" />
+        android:text="Android7.0通知分组"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_notification_reply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_notification_group"
+        android:text="回复通知"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_notification_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_notification_reply"
+        android:text="模拟聊天"
+        android:textAllCaps="false" />
 </RelativeLayout>
