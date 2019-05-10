@@ -314,7 +314,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
             if (msg.toString().equals("收到请回复")) {
                 messagingStyle.addMessage(msg, System.currentTimeMillis(), "小明");
             } else {
-                messagingStyle.addMessage(msg, System.currentTimeMillis(), null);
+                messagingStyle.addMessage(msg, System.currentTimeMillis(), "小李");
             }
         }
         Collections.reverse(history);
