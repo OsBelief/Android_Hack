@@ -5,3 +5,4 @@
 /build
 /captures
 /app/.externalNativeBuild/
+/app/app.iml

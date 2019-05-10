@@ -12,5 +12,7 @@ public class NdkJniUtils {
         System.loadLibrary("HelloJni");    //defaultConfig.ndk.moduleName
     }
 
-    public native String getUserName();
+    public native String getContent();
+
+    public native void setContent(String content);
 }

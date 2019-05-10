@@ -9,11 +9,14 @@ extern "C" {
 #endif
 /*
  * Class:     com_android_hack_jni_NdkJniUtils
- * Method:    getUserName
+ * Method:    getContent
  * Signature: ()Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL Java_com_android_hack_jni_NdkJniUtils_getUserName
+JNIEXPORT jstring JNICALL Java_com_android_hack_jni_NdkJniUtils_getContent
   (JNIEnv *, jobject);
+
+JNIEXPORT void JNICALL Java_com_android_hack_jni_NdkJniUtils_setContent
+        (JNIEnv *, jobject, jstring content);
 
 #ifdef __cplusplus
 }
