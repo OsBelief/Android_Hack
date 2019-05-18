@@ -12,11 +12,28 @@ extern "C" {
  * Method:    getContent
  * Signature: ()Ljava/lang/String;
  */
+const char *content;
+
+typedef struct {
+    jint age;
+    jboolean gender;
+    const char *name;
+    jfloat weight;
+} UserInfo;
+
+UserInfo jUserInfo;
+
 JNIEXPORT jstring JNICALL Java_com_android_hack_jni_NdkJniUtils_getContent
-  (JNIEnv *, jobject);
+        (JNIEnv *, jobject);
 
 JNIEXPORT void JNICALL Java_com_android_hack_jni_NdkJniUtils_setContent
         (JNIEnv *, jobject, jstring content);
+
+JNIEXPORT jobject JNICALL Java_com_android_hack_jni_NdkJniUtils_getUserInfo
+        (JNIEnv *, jobject);
+
+JNIEXPORT void JNICALL Java_com_android_hack_jni_NdkJniUtils_setUserInfo
+        (JNIEnv *, jobject, jobject userInfo);
 
 #ifdef __cplusplus
 }

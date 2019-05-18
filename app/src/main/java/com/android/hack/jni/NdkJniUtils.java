@@ -15,4 +15,8 @@ public class NdkJniUtils {
     public native String getContent();
 
     public native void setContent(String content);
+
+    public native void setUserInfo(UserInfo userInfo);
+
+    public native UserInfo getUserInfo();
 }

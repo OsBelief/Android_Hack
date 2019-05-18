@@ -5,17 +5,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.hack.R;
 
 /**
  * 学习Android JNI编程
+ * https://www.jianshu.com/p/433b2c93c6a7
  */
 public class JniActivity extends AppCompatActivity {
-    private TextView helloTv;
-    private EditText mEditText;
-    private Button mButton;
+    private TextView mHelloTv;
+    private TextView mUserInfoTv;
+
+    private EditText mNameET;
+    private EditText mAgeET;
+    private EditText mWeightET;
+    private RadioGroup mGenderRG;
+    private Button mUpdateBtn;
+
     private NdkJniUtils jniUtils;
 
     @Override
@@ -23,19 +32,37 @@ public class JniActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jni);
 
-        mEditText = findViewById(R.id.et_jni_hello);
-        helloTv = (TextView) findViewById(R.id.tv_jni_hello);
-        mButton = findViewById(R.id.btn_update);
+        mHelloTv = (TextView) findViewById(R.id.tv_jni_hello);
+        mUserInfoTv = findViewById(R.id.tv_jni_person);
+        mNameET = findViewById(R.id.et_jni_name);
+        mAgeET = findViewById(R.id.et_jni_age);
+        mWeightET = findViewById(R.id.et_jni_weight);
+        mGenderRG = findViewById(R.id.et_jni_gender);
+        mUpdateBtn = findViewById(R.id.btn_update);
 
         jniUtils = new NdkJniUtils();
-        helloTv.setText(jniUtils.getContent());
+        mHelloTv.setText(jniUtils.getContent());
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mUpdateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jniUtils.setContent(mEditText.getText().toString());
+                jniUtils.setContent(mNameET.getText().toString());
+                mHelloTv.setText(jniUtils.getContent());
 
-                helloTv.setText(jniUtils.getContent());
+                UserInfo userInfo = new UserInfo();
+                userInfo.mName = mNameET.getText().toString();
+                userInfo.mAge = Integer.valueOf(mAgeET.getText().toString());
+                userInfo.mGender = mGenderRG.getCheckedRadioButtonId() == R.id.et_jni_male;
+                userInfo.mWeight = Float.valueOf(mWeightET.getText().toString());
+
+                jniUtils.setUserInfo(userInfo);
+
+                UserInfo jniUserInfo = jniUtils.getUserInfo();
+                if (jniUserInfo == null) {
+                    Toast.makeText(JniActivity.this, "JNI getUserInfo is null!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                mUserInfoTv.setText(jniUserInfo.toString());
             }
         });
     }
