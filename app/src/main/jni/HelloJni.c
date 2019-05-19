@@ -2,7 +2,9 @@
 // Created by yicha on 2015/9/24.
 //
 
+// <>标准库头文件, ""自定义头文件
 #include<android/log.h>
+#include <string.h>
 #include "com_android_hack_jni_NdkJniUtils.h"
 
 #ifndef LOG_TAG
@@ -29,6 +31,12 @@ JNIEXPORT jstring JNICALL Java_com_android_hack_jni_NdkJniUtils_getContent
 JNIEXPORT void JNICALL Java_com_android_hack_jni_NdkJniUtils_setContent
         (JNIEnv *env, jobject obj, jstring txt) {
     content = (*env)->GetStringUTFChars(env, txt, NULL);
+    // strcmp比较字符串, 区分大小写, 返回0表示相等
+    if (strcmp(content, "hello") == 0) {
+        LOGI("input hello!");
+    } else {
+        LOGI("input %s!", content);
+    }
 }
 
 // C结构体向Java类转化
@@ -68,7 +76,7 @@ JNIEXPORT void JNICALL Java_com_android_hack_jni_NdkJniUtils_setUserInfo
     LOGD("Java_com_android_hack_jni_NdkJniUtils_setUserInfo---");
 
     jclass userInfoClass = (*env)->FindClass(env,
-                                             "com/android/hack/jni/UserInfo"); // 获取Java中的实例类UserInfo
+                                             "com/android/hack/jni/UserInfo"); // 获取Java中的实例类UserInfo, 类似Java反射
     jfieldID jAge = (*env)->GetFieldID(env, userInfoClass, "mAge", "I"); // 获取整形变量mAge的定义
     jUserInfo.age = (*env)->GetIntField(env, userInfoObj, jAge);
 

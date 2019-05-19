@@ -12,7 +12,14 @@ extern "C" {
  * Method:    getContent
  * Signature: ()Ljava/lang/String;
  */
+/*
+ * const修饰常量, 定义时初始化
+ * const char *content与char * const content的区别:
+ * 前者表示指针可以指向不同的数据, 但它们指向的数据自身不能被修改
+ * 后者表示指针本身的值不能被修改, 不能指向不同的数据
+ */
 const char *content;
+// char * const content;
 
 typedef struct {
     jint age;
